@@ -1,0 +1,36 @@
+# finetuning datasets
+- MPP
+  - classification
+    - bace
+      - processed
+        - 224/
+        - bace_processed.csv
+    - bbbp
+    - clintox
+    - hiv
+  - regression
+    - esol
+    - freesolv
+    - lipophilicity
+- CYP450
+  - TrainSet_CYP1A2
+    - processed
+      - 224/
+      - TrainSet_CYP1A2_processed.csv
+  - TrainSet_CYP2C9
+  - TrainSet_CYP2C19
+  - TrainSet_CYP2D6
+  - TrainSet_CYP3A4
+- SARS-CoV-2
+  - 3CL_enzymatic_activity
+    - processed
+      - 224/
+      - 3CL_enzymatic_activity_processed.csv
+  - ACE2_enzymatic_activity
+  - HEK293_cell_line_toxicity
+  - ...
+- SARS-CoV-2(REDIAL-2020)
+  - 3CL
+  - ACE2
+  - AlphaLISA
+  - ...

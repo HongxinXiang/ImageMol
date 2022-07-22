@@ -1,0 +1,8 @@
+scikit-learn==1.21.2
+tqdm==4.62.3
+einops==0.3.2
+networkx==2.6.3
+torch-geometric==2.0.2
+pandas
+numpy
+tqdm
