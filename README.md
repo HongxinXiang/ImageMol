@@ -223,6 +223,22 @@ More about GradCAM heatmap can be found from this link: https://drive.google.com
 
 To facilitate observation of high-confidence regions in the GradCAM heatmap, we use a confidence to filter out lower-confidence regions, which can be found from this link: https://drive.google.com/file/d/1631kSSiM_FSRBBkfh7PwI5p3LGqYYpMc/view?usp=sharing
 
+### run script
+
+We also provide a script to generate GradCAM heatmaps:
+
+```bash
+usage: main.py [-h] [--image_model IMAGE_MODEL] --resume PATH --img_path
+               IMG_PATH --gradcam_save_path GRADCAM_SAVE_PATH
+               [--thresh THRESH]
+```
+
+you can run the following script:
+
+```bash
+python main.py --resume ${resume} --img_path ${img_path} --gradcam_save_path ${gradcam_save_path} --thresh ${thresh}
+```
+
 
 
 ## Process your own dataset
