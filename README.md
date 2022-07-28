@@ -158,7 +158,7 @@ python finetune.py --gpu ${gpu_no} \
 For example:
 
 ```bash
-python finetune.py --gpu 0 
+python finetune.py --gpu 0 \
                    --save_finetune_ckpt 1 \
                    --log_dir ./logs/toxcast \
                    --dataroot ./datasets/finetuning/benchmarks \
