@@ -236,7 +236,10 @@ usage: main.py [-h] [--image_model IMAGE_MODEL] --resume PATH --img_path
 you can run the following script:
 
 ```bash
-python main.py --resume ${resume} --img_path ${img_path} --gradcam_save_path ${gradcam_save_path} --thresh ${thresh}
+python main.py --resume ${resume} \
+               --img_path ${img_path} \
+               --gradcam_save_path ${gradcam_save_path} \
+               --thresh ${thresh} \
 ```
 
 
