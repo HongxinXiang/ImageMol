@@ -1,4 +1,9 @@
 # ImageMol: Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework
+[![OSCS Status](https://www.oscs1024.com/platform/badge/HongxinXiang/ImageMol.svg?size=small)](https://www.oscs1024.com/project/HongxinXiang/ImageMol?ref=badge_small)
+<a href="https://github.com/HongxinXiang/ImageMol/blob/master/LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/HongxinXiang/ImageMol?style=flat-square">
+</a>
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/HongxinXiang/ImageMol?style=flat-square">
 
 ## Abstract
 
