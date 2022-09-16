@@ -136,7 +136,7 @@ You can download [pre-trained model](https://drive.google.com/file/d/1wQfby8JIhg
 
 #### 2. Finetune with pre-trained ImageMol
 
-**a)** You can download [molecular property prediciton datasets](https://drive.google.com/file/d/1IdW6J6tX4j5JU0bFcQcuOBVwGNdX7pZp/view?usp=sharing), [CYP450 datasets](https://drive.google.com/file/d/1mBsgGWXYqej5McsLwy1_fs_-VGGQnCro/view?usp=sharing) and [SARS-CoV-2 datasets](https://drive.google.com/file/d/1UfROoqR_aU6f5xWwxpLoiJnkwyUzDsui/view?usp=sharing) and put it into ``datasets/finetuning/``
+**a)** You can download [molecular property prediciton datasets](https://drive.google.com/file/d/1IdW6J6tX4j5JU0bFcQcuOBVwGNdX7pZp/view?usp=sharing), [CYP450 datasets](https://drive.google.com/file/d/1mBsgGWXYqej5McsLwy1_fs_-VGGQnCro/view?usp=sharing), [multi-label CYP450 dataset](https://drive.google.com/file/d/1VVV5HjIUwlm1yYjksz-e37LUPh-iuB4y/view?usp=sharing), [SARS-CoV-2 datasets](https://drive.google.com/file/d/1UfROoqR_aU6f5xWwxpLoiJnkwyUzDsui/view?usp=sharing), [kinases datasets](https://drive.google.com/file/d/1HVHrxJfW16-5uxQ-7DxgQTxroXxeFDcQ/view?usp=sharing) and [KinomeScan datasets](https://drive.google.com/file/d/1V4xVgjbzBWcIu0CRcHoYVZH9jdnZXpPj/view?usp=sharing) and put it into ``datasets/finetuning/``
 
 **b)** The usage is as follows:
 
