@@ -12,6 +12,7 @@ The clinical efficacy and safety of a drug is determined by its molecular target
 
 
 ## News!
+**[2022/09/17]** Upload more benchmark datasets, including multi-label CYP450, kinases and KinomeScan.
 
 **[2022/07/28]** Repository installation completed.
 
