@@ -1,4 +1,5 @@
 # ImageMol: Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework
+<a href="https://zenodo.org/badge/latestdoi/516735012"><img src="https://zenodo.org/badge/516735012.svg" alt="DOI"></a>
 [![OSCS Status](https://www.oscs1024.com/platform/badge/HongxinXiang/ImageMol.svg?size=small)](https://www.oscs1024.com/project/HongxinXiang/ImageMol?ref=badge_small)
 <a href="https://github.com/HongxinXiang/ImageMol/blob/master/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/HongxinXiang/ImageMol?style=flat-square">
