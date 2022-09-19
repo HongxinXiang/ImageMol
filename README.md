@@ -269,8 +269,8 @@ If you want to process your own dataset and obtain molecular images, use the fol
 
 
 # Reference
-
-```
+If you use ImageMol in scholary publications, presentations or to communicate with your satellite, please cite the following work that presents the algorithms used:
+```bib
 @article{zeng2022accurate,
   title={Accurate prediction of molecular targets using a self-supervised image representation learning framework},
   author={Zeng, Xiangxiang and Xiang, Hongxin and Yu, Linhui and Wang, Jianmin and Li, Kenli and Nussinov, Ruth and Cheng, Feixiong},
@@ -278,5 +278,19 @@ If you want to process your own dataset and obtain molecular images, use the fol
   pages={rs--3},
   year={2022},
   publisher={American Journal Experts}
+}
+```
+
+If you additionally want to cite this code package, please cite as follows:
+```bib
+@software{hongxinxiang_2022_7088986,
+  author       = {HongxinXiang},
+  title        = {HongxinXiang/ImageMol: v1.0.0},
+  month        = sep,
+  year         = 2022,
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.7088986},
+  url          = {https://doi.org/10.5281/zenodo.7088986}
 }
 ```
