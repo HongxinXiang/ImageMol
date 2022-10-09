@@ -1,10 +1,17 @@
-# ImageMol: Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework
+# ImageMol
+
+The code is an official PyTorch-based implementation in the paper [Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework](#wait-to-online) (accepted in *Nature Machine Intelligence*, 2022).
+
+
+
 <a href="https://zenodo.org/badge/latestdoi/516735012"><img src="https://zenodo.org/badge/516735012.svg" alt="DOI"></a>
 [![OSCS Status](https://www.oscs1024.com/platform/badge/HongxinXiang/ImageMol.svg?size=small)](https://www.oscs1024.com/project/HongxinXiang/ImageMol?ref=badge_small)
 <a href="https://github.com/HongxinXiang/ImageMol/blob/master/LICENSE">
     <img alt="GitHub" src="https://img.shields.io/github/license/HongxinXiang/ImageMol?style=flat-square">
 </a>
 <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/HongxinXiang/ImageMol?style=flat-square">
+
+
 
 ## Abstract
 
@@ -13,6 +20,8 @@ The clinical efficacy and safety of a drug is determined by its molecular target
 
 
 ## News!
+**[2022/10/07]** Accepted in *Nature Machine Intelligence*, 2022.
+
 **[2022/09/17]** Upload more benchmark datasets, including multi-label CYP450, kinases and KinomeScan.
 
 **[2022/07/28]** Repository installation completed.
