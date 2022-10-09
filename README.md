@@ -17,6 +17,9 @@ The code is an official PyTorch-based implementation in the paper [Accurate pred
 
 The clinical efficacy and safety of a drug is determined by its molecular targets in the human proteome. However, proteome-wide evaluation of all compounds in human, or even animal models, is challenging. In this study, we present an unsupervised pre-training deep learning framework, termed ImageMol, from 10 million unlabeled drug-like molecules to predict molecular targets of candidate compounds. The ImageMol framework is designed to pretrain chemical representations from unlabeled molecular images based on local- and global-structural characteristics of molecules from pixels. We demonstrate high performance of ImageMol in evaluation of molecular properties (i.e., drug’s metabolism, brain penetration and toxicity) and molecular target profiles (i.e., human immunodeficiency virus) across 10 benchmark datasets. ImageMol shows high accuracy in identifying anti-SARS-CoV-2 molecules across 13 high-throughput experimental datasets from the National Center for Advancing Translational Sciences (NCATS) and we re-prioritized candidate clinical 3CL inhibitors for potential treatment of COVID-19. In summary, ImageMol is an active self-supervised image processing-based strategy that offers a powerful toolbox for computational drug discovery in a variety of human diseases, including COVID-19.
 
+![framework](./imgs/framework.png)
+
+
 
 
 ## News!
