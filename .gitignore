@@ -6,4 +6,5 @@ __pycache__/
 
 # Project file
 logs/
+application/
 *nonpublish.py
