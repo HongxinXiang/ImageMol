@@ -1,5 +1,6 @@
 import argparse
 import os
+from collections import Counter
 import numpy as np
 import torch
 import torch.nn as nn
@@ -44,6 +45,7 @@ def parse_args():
     parser.add_argument('--imageSize', type=int, default=224, help='the height / width of the input image to network')
     parser.add_argument('--image_model', type=str, default="ResNet18", help='e.g. ResNet18, ResNet34')
     parser.add_argument('--image_aug', action='store_true', default=False, help='whether to use data augmentation')
+    parser.add_argument('--weighted_CE', action='store_true', default=False, help='whether to use global imbalanced weight')
     parser.add_argument('--task_type', type=str, default="classification", choices=["classification", "regression"],
                         help='task type')
     parser.add_argument('--save_finetune_ckpt', type=int, default=1, choices=[0, 1],
@@ -188,7 +190,14 @@ def main(args):
         momentum=args.momentum,
         weight_decay=10 ** args.weight_decay,
     )
+
+    weights = None
     if args.task_type == "classification":
+        if args.weighted_CE:
+            labels_train_list = labels_train[labels_train != -1].flatten().tolist()
+            count_labels_train = Counter(labels_train_list)
+            imbalance_weight = {key: 1 - count_labels_train[key] / len(labels_train_list) for key in count_labels_train.keys()}
+            weights = np.array(sorted(imbalance_weight.items(), key=lambda x: x[0]), dtype="float")[:, 1]
         criterion = nn.BCEWithLogitsLoss(reduction="none")
     elif args.task_type == "regression":
         criterion = nn.MSELoss()
@@ -209,12 +218,11 @@ def main(args):
     for epoch in range(args.start_epoch, args.epochs):
         # train
         train_one_epoch_multitask(model=model, optimizer=optimizer, data_loader=train_dataloader, criterion=criterion,
-                                  device=device, epoch=epoch, task_type=args.task_type)
+                                  weights=weights, device=device, epoch=epoch, task_type=args.task_type)
         # evaluate
         train_loss, train_results, train_data_dict = evaluate_on_multitask(model=model, data_loader=train_dataloader,
                                                                            criterion=criterion, device=device,
-                                                                           epoch=epoch,
-                                                                           task_type=args.task_type,
+                                                                           epoch=epoch, task_type=args.task_type,
                                                                            return_data_dict=True)
         val_loss, val_results, val_data_dict = evaluate_on_multitask(model=model, data_loader=val_dataloader,
                                                                      criterion=criterion, device=device,

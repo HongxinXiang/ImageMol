@@ -65,7 +65,7 @@ def metric(y_true, y_pred, y_prob):
     }
 
 
-def train_one_epoch_multitask(model, optimizer, data_loader, criterion, device, epoch, task_type):
+def train_one_epoch_multitask(model, optimizer, data_loader, criterion, weights, device, epoch, task_type):
     '''
     :param model:
     :param optimizer:
@@ -95,7 +95,16 @@ def train_one_epoch_multitask(model, optimizer, data_loader, criterion, device, 
             is_valid = labels != -1
             loss_mat = criterion(pred.double(), labels)
             loss_mat = torch.where(is_valid, loss_mat, torch.zeros(loss_mat.shape).to(loss_mat.device).to(loss_mat.dtype))
-            loss = torch.sum(loss_mat) / torch.sum(is_valid)
+            if weights is None:
+                loss = torch.sum(loss_mat) / torch.sum(is_valid)
+            else:
+                cls_weights = labels.clone()
+                cls_weights_mask = []
+                for i, weight in enumerate(weights):
+                    cls_weights_mask.append(cls_weights == i)
+                for i, cls_weight_mask in enumerate(cls_weights_mask):
+                    cls_weights[cls_weight_mask] = weights[i]
+                loss = torch.sum(loss_mat * cls_weights) / torch.sum(is_valid)
         elif task_type == "regression":
             loss = criterion(pred.double(), labels)
 
