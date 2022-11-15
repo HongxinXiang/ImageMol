@@ -161,7 +161,7 @@ usage: finetune.py [-h] [--dataset DATASET] [--dataroot DATAROOT] [--gpu GPU]
                    [--split {random,stratified,scaffold,random_scaffold,scaffold_balanced}]
                    [--epochs EPOCHS] [--start_epoch START_EPOCH]
                    [--batch BATCH] [--resume PATH] [--imageSize IMAGESIZE]
-                   [--image_model IMAGE_MODEL] [--image_aug]
+                   [--image_model IMAGE_MODEL] [--image_aug] [--weighted_CE]
                    [--task_type {classification,regression}]
                    [--save_finetune_ckpt {0,1}] [--log_dir LOG_DIR]
 ```
