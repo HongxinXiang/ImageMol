@@ -1,6 +1,6 @@
 # ImageMol
 
-The code is an official PyTorch-based implementation in the paper [Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework](#wait-to-online) (accepted in *Nature Machine Intelligence*, 2022).
+The code is an official PyTorch-based implementation in the paper [Accurate prediction of molecular properties and drug targets using a self-supervised image representation learning framework](https://www.nature.com/articles/s42256-022-00557-6) (accepted in *Nature Machine Intelligence*, 2022).
 
 
 
@@ -23,6 +23,8 @@ The clinical efficacy and safety of a drug is determined by its molecular target
 
 
 ## News!
+**[2022/11/17]** ImageMol is [online](https://www.nature.com/articles/s42256-022-00557-6).
+
 **[2022/10/07]** Accepted in *Nature Machine Intelligence*, 2022.
 
 **[2022/09/17]** Upload more benchmark datasets, including multi-label CYP450, kinases and KinomeScan.
