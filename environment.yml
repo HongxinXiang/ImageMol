@@ -1,0 +1,23 @@
+name: ImageMol
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - cudatoolkit=10.1
+  - mpi4py=3.0
+  - pip=20.0
+  - python=3.7.3
+  - pytorch=1.4.0
+  - torchvision=0.5.0
+  - tqdm=4.62.3
+  - einops=0.3.2
+  - networkx=2.6.3
+  - scikit-learn=0.21.2
+  - pandas
+  - numpy
+  - pip:
+      - torch-geometric==2.0.2
+      - gdown
