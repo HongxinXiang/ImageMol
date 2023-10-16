@@ -88,7 +88,10 @@ def main(args):
     if args.resume:
         if os.path.isfile(args.resume):  # only support ResNet18 when loading resume
             print("=> loading checkpoint '{}'".format(args.resume))
-            checkpoint = torch.load(args.resume)
+            try:
+                checkpoint = torch.load(args.resume)
+            except:
+                checkpoint = torch.load(args.resume)["model_state_dict"]
             model.load_state_dict(checkpoint)
             print("=> loading completed")
         else:
