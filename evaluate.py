@@ -90,9 +90,10 @@ def main(args):
             print("=> loading checkpoint '{}'".format(args.resume))
             try:
                 checkpoint = torch.load(args.resume)
+                model.load_state_dict(checkpoint)
             except:
                 checkpoint = torch.load(args.resume)["model_state_dict"]
-            model.load_state_dict(checkpoint)
+                model.load_state_dict(checkpoint)
             print("=> loading completed")
         else:
             print("=> no checkpoint found at '{}'".format(args.resume))
