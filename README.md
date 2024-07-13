@@ -244,6 +244,8 @@ python evaluate.py --dataroot ./datasets/finetuning/benchmarks \
                    --batch 128
 ```
 
+More finetuned models and training logs can be found in [this link](https://1drv.ms/f/s!Atau0ecyBQNThAW10rmIyrh9BKc2?e=zN4Iqo).
+
 
 
 ## GradCAM Visualization
