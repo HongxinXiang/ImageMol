@@ -24,7 +24,7 @@ def parse_args():
     parser.add_argument('--dataroot', type=str, default="./data_process/data/", help='data root')
     parser.add_argument('--gpu', default='0', type=str, help='index of GPU to use')
     parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use (default: 1)')
-    parser.add_argument('--workers', default=2, type=int, help='number of data loading workers (default: 2)')
+    parser.add_argument('--workers', default=4, type=int, help='number of data loading workers (default: 4)')
 
     # optimizer
     parser.add_argument('--lr', default=0.01, type=float, help='learning rate (default: 0.01)')
@@ -42,12 +42,12 @@ def parse_args():
                         help='manual epoch number (useful on restarts) (default: 0)')
     parser.add_argument('--batch', default=128, type=int, help='mini-batch size (default: 128)')
     parser.add_argument('--resume', default='None', type=str, metavar='PATH', help='path to checkpoint (default: None)')
+    parser.add_argument('--resume_key', default="state_dict", type=str, help='key of checkpoint')
     parser.add_argument('--imageSize', type=int, default=224, help='the height / width of the input image to network')
     parser.add_argument('--image_model', type=str, default="ResNet18", help='e.g. ResNet18, ResNet34')
     parser.add_argument('--image_aug', action='store_true', default=False, help='whether to use data augmentation')
     parser.add_argument('--weighted_CE', action='store_true', default=False, help='whether to use global imbalanced weight')
-    parser.add_argument('--task_type', type=str, default="classification", choices=["classification", "regression"],
-                        help='task type')
+    parser.add_argument('--task_type', type=str, default="classification", choices=["classification", "regression"], help='task type')
     parser.add_argument('--save_finetune_ckpt', type=int, default=1, choices=[0, 1],
                         help='1 represents saving best ckpt, 0 represents no saving best ckpt')
 
@@ -94,9 +94,7 @@ def main(args):
 
     ##################################### load data #####################################
     if args.image_aug:
-        img_transformer_train = [transforms.CenterCrop(args.imageSize), transforms.RandomHorizontalFlip(),
-                                 transforms.RandomGrayscale(p=0.2), transforms.RandomRotation(degrees=360),
-                                 transforms.ToTensor()]
+        img_transformer_train = [transforms.CenterCrop(args.imageSize), transforms.RandomGrayscale(p=0.2), transforms.RandomRotation(degrees=360), transforms.RandomHorizontalFlip(), transforms.ToTensor()]
     else:
         img_transformer_train = [transforms.CenterCrop(args.imageSize), transforms.ToTensor()]
     img_transformer_test = [transforms.CenterCrop(args.imageSize), transforms.ToTensor()]
@@ -105,32 +103,22 @@ def main(args):
     num_tasks = labels.shape[1]
 
     if args.split == "random":
-        train_idx, val_idx, test_idx = split_train_val_test_idx(list(range(0, len(names))), frac_train=0.8,
-                                                                frac_valid=0.1, frac_test=0.1, seed=args.seed)
+        train_idx, val_idx, test_idx = split_train_val_test_idx(list(range(0, len(names))), frac_train=0.8, frac_valid=0.1, frac_test=0.1, seed=args.seed)
     elif args.split == "stratified":
-        train_idx, val_idx, test_idx = split_train_val_test_idx_stratified(list(range(0, len(names))), labels,
-                                                                           frac_train=0.8, frac_valid=0.1,
-                                                                           frac_test=0.1, seed=args.seed)
+        train_idx, val_idx, test_idx = split_train_val_test_idx_stratified(list(range(0, len(names))), labels, frac_train=0.8, frac_valid=0.1, frac_test=0.1, seed=args.seed)
     elif args.split == "scaffold":
         smiles = load_smiles(args.txt_file)
-        train_idx, val_idx, test_idx = scaffold_split_train_val_test(list(range(0, len(names))), smiles, frac_train=0.8,
-                                                                     frac_valid=0.1, frac_test=0.1)
+        train_idx, val_idx, test_idx = scaffold_split_train_val_test(list(range(0, len(names))), smiles, frac_train=0.8, frac_valid=0.1, frac_test=0.1)
     elif args.split == "random_scaffold":
         smiles = load_smiles(args.txt_file)
-        train_idx, val_idx, test_idx = random_scaffold_split_train_val_test(list(range(0, len(names))), smiles,
-                                                                            frac_train=0.8, frac_valid=0.1,
-                                                                            frac_test=0.1, seed=args.seed)
+        train_idx, val_idx, test_idx = random_scaffold_split_train_val_test(list(range(0, len(names))), smiles, frac_train=0.8, frac_valid=0.1, frac_test=0.1, seed=args.seed)
     elif args.split == "scaffold_balanced":
         smiles = load_smiles(args.txt_file)
-        train_idx, val_idx, test_idx = scaffold_split_balanced_train_val_test(list(range(0, len(names))), smiles,
-                                                                              frac_train=0.8, frac_valid=0.1,
-                                                                              frac_test=0.1, seed=args.seed,
-                                                                              balanced=True)
+        train_idx, val_idx, test_idx = scaffold_split_balanced_train_val_test(list(range(0, len(names))), smiles, frac_train=0.8, frac_valid=0.1, frac_test=0.1, seed=args.seed, balanced=True)
 
     name_train, name_val, name_test, labels_train, labels_val, labels_test = names[train_idx], names[val_idx], names[
         test_idx], labels[train_idx], labels[val_idx], labels[test_idx]
-    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.229, 0.224, 0.225])
+    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     train_dataset = ImageDataset(name_train, labels_train, img_transformer=transforms.Compose(img_transformer_train),
                                  normalize=normalize, args=args)
     val_dataset = ImageDataset(name_val, labels_val, img_transformer=transforms.Compose(img_transformer_test),
@@ -161,7 +149,7 @@ def main(args):
         if os.path.isfile(args.resume):  # only support ResNet18 when loading resume
             print("=> loading checkpoint '{}'".format(args.resume))
             checkpoint = torch.load(args.resume)
-            ckp_keys = list(checkpoint['state_dict'])
+            ckp_keys = list(checkpoint[args.resume_key])
             cur_keys = list(model.state_dict())
             model_sd = model.state_dict()
             if args.image_model == "ResNet18":
@@ -169,7 +157,7 @@ def main(args):
                 cur_keys = cur_keys[:120]
 
             for ckp_key, cur_key in zip(ckp_keys, cur_keys):
-                model_sd[cur_key] = checkpoint['state_dict'][ckp_key]
+                model_sd[cur_key] = checkpoint[args.resume_key][ckp_key]
 
             model.load_state_dict(model_sd)
             arch = checkpoint['arch']
