@@ -20,7 +20,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='PyTorch Implementation of ImageMol')
 
     # basic
-    parser.add_argument('--dataset', type=str, default="BBBP", help='dataset name, e.g. BBBP, tox21, ...')
+    parser.add_argument('--dataset', type=str, default="bbbp", help='dataset name, e.g. bbbp, tox21, ...')
     parser.add_argument('--dataroot', type=str, default="./data_process/data/", help='data root')
     parser.add_argument('--gpu', default='0', type=str, help='index of GPU to use')
     parser.add_argument('--ngpu', type=int, default=1, help='number of GPUs to use (default: 1)')
@@ -38,8 +38,7 @@ def parse_args():
                         choices=['random', 'stratified', 'scaffold', 'random_scaffold', 'scaffold_balanced'],
                         help='regularization of classification loss')
     parser.add_argument('--epochs', type=int, default=100, help='number of total epochs to run (default: 100)')
-    parser.add_argument('--start_epoch', default=0, type=int,
-                        help='manual epoch number (useful on restarts) (default: 0)')
+    parser.add_argument('--start_epoch', default=0, type=int, help='manual epoch number (useful on restarts) (default: 0)')
     parser.add_argument('--batch', default=128, type=int, help='mini-batch size (default: 128)')
     parser.add_argument('--resume', default='None', type=str, metavar='PATH', help='path to checkpoint (default: None)')
     parser.add_argument('--resume_key', default="state_dict", type=str, help='key of checkpoint')
@@ -48,8 +47,7 @@ def parse_args():
     parser.add_argument('--image_aug', action='store_true', default=False, help='whether to use data augmentation')
     parser.add_argument('--weighted_CE', action='store_true', default=False, help='whether to use global imbalanced weight')
     parser.add_argument('--task_type', type=str, default="classification", choices=["classification", "regression"], help='task type')
-    parser.add_argument('--save_finetune_ckpt', type=int, default=1, choices=[0, 1],
-                        help='1 represents saving best ckpt, 0 represents no saving best ckpt')
+    parser.add_argument('--save_finetune_ckpt', type=int, default=1, choices=[0, 1], help='1 represents saving best ckpt, 0 represents no saving best ckpt')
 
     # log
     parser.add_argument('--log_dir', default='./logs/finetune/', help='path to log')
@@ -64,7 +62,6 @@ def main(args):
     os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
     args.image_folder, args.txt_file = get_datasets(args.dataset, args.dataroot, data_type="processed")
-    args.verbose = True
 
     device, device_ids = setup_device(args.ngpu)
 
@@ -72,8 +69,7 @@ def main(args):
     fix_train_random_seed(args.runseed)
 
     # architecture name
-    if args.verbose:
-        print('Architecture: {}'.format(args.image_model))
+    print('Architecture: {}'.format(args.image_model))
 
     ##################################### initialize some parameters #####################################
     if args.task_type == "classification":
