@@ -200,6 +200,7 @@ python finetune.py --gpu 0 \
                    --epochs 20
 ```
 
+**Note:** You can tune more hyper-parameters during fine-tuning (see **b) Usage**).
 
 ## Finetuned models
 
@@ -240,9 +241,6 @@ python evaluate.py --dataroot ./datasets/finetuning/benchmarks \
                    --resume ./toxcast.pth \
                    --batch 128
 ```
-
-More finetuned models and training logs can be found in [this link](https://1drv.ms/f/s!Atau0ecyBQNThAW10rmIyrh9BKc2?e=zN4Iqo).
-
 
 
 ## GradCAM Visualization
