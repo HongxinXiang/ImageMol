@@ -200,9 +200,6 @@ python finetune.py --gpu 0 \
                    --epochs 20
 ```
 
-**Note:** You can tune more hyper-parameters during fine-tuning (see **b) Usage**).
-
-
 
 ## Finetuned models
 
