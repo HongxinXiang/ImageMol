@@ -119,6 +119,7 @@ python pretrain.py --ckpt_dir ./ckpts/pretraining/ \
                    --batch 256 \
                    --dataroot ./datasets/pretraining/ \
                    --dataset data \
+                   --workers 10 \
                    --gpu 0,1,2,3 \
                    --ngpu 4
 ```
@@ -136,6 +137,7 @@ python pretrain.py --ckpt_dir ./ckpts/pretraining-toy/ \
                    --batch 16 \
                    --dataroot ./datasets/toy/pretraining/ \
                    --dataset data \
+                   --workers 10 \
                    --gpu 0 \
                    --ngpu 1
 ```
@@ -242,6 +244,7 @@ python evaluate.py --dataroot ./datasets/finetuning/benchmarks \
                    --batch 128
 ```
 
+More finetuned models: [this link](https://1drv.ms/f/c/53030532e7d1aed6/Eg8ISG7JBDFEsfRMrlwOe1kB5EVNWNiuFdMksJYx0sl4AQ?e=L8dpfu).
 
 ## GradCAM Visualization
 
